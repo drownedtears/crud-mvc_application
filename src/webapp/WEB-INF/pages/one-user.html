@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crud Application</title>
+  <style>
+    body {
+      font-family: "Berlin Sans FB",serif;
+      font-size: 30px;
+      color: black;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:visited {
+        color: inherit;
+    }
+    .main_tb {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .main_tb td  {
+      border: 2px solid black;
+      padding: 5px;
+      text-align: center;
+    }
+    .main_tb th {
+      border: 2px solid black;
+      padding: 5px;
+      margin-right: 15px;
+      text-align: center;
+    }
+    .buttons {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .buttons_back {
+      font-family: inherit;
+      height: 53px;
+      font-size: 30px;
+      box-sizing: border-box;
+      border: 2px solid black;
+      background-color: white;
+      padding: 8px 8px;
+      width: 140px;
+      cursor: pointer;
+    }
+    .buttons_back:hover {
+      background-color: #3CBC8D;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div clas="container">
+  <table class="main_tb">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:text="${oneUser.getId()}"></td>
+      <td th:text="${oneUser.getName()}"></td>
+      <td th:text="${oneUser.getLastName()}"></td>
+      <td th:text=" ${oneUser.getSalary()}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="buttons">
+    <a class="buttons_back" href="/crudApplication/users">Back</a>
+  </div>
+</div>
+
+</body>
+</html>

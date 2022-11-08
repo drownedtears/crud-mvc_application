@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.w3.org/1999/xhtml" xmlns:Nameform="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crud Application</title>
+    <style>
+        body {
+            font-family: "Berlin Sans FB",serif;
+            font-size: 30px;
+            color: black;
+        }
+        a:visited {
+            color: inherit;
+        }
+        .main_inner {
+            text-align: center;
+        }
+        .confirm {
+            width: 400px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .confirm a, .confirm button {
+            font-size: 20px;
+            font-family: inherit;
+            margin-top: 30px;
+            box-sizing: border-box;
+            border: 2px solid black;
+            background-color: white;
+            padding: 10px 10px;
+            text-decoration: none;
+            width: 80px;
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .confirm a:hover, .confirm button:hover {
+            background-color: #3CBC8D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="main_inner">
+        <div>
+            <spa>Name - </spa>
+            <spa th:text="${userForDeletion.getName()}"></spa>
+        </div>
+        <div>
+            <spa>Last name - </spa>
+            <spa th:text="${userForDeletion.getLastName()}"></spa>
+        </div>
+        <div>
+            <spa>Salary - </spa>
+            <spa th:text="${userForDeletion.getSalary()}"></spa>
+        </div>
+    </div>
+    <div class="confirm">
+        <div>Are you sure you want to delete this user?</div>
+        <form th:action="@{/users/delete/confirmed}" th:object="${userForDeletion}" method="post">
+            <input type="hidden" name="id" th:value="${userForDeletion.getId()}">
+            <input type="hidden" name="name" th:value="${userForDeletion.getName()}">
+            <input type="hidden" name="lastName" th:value="${userForDeletion.getLastName()}">
+            <input type="hidden" name="salary" th:value="${userForDeletion.getSalary()}">
+            <button type="submit">Yes</button>
+            <a href="/crudApplication/users">No</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
