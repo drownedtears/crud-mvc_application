@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.doketov.crud.model.User;
 
-import javax.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -14,33 +16,38 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public User getUserById(Long id) {
-        return sessionFactory.getCurrentSession().get(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getAllUsers() {
-        TypedQuery<User> q = sessionFactory.getCurrentSession().createQuery("FROM User");
+        Query q = entityManager.createQuery("from User", User.class);
         return q.getResultList();
     }
 
     @Override
     public void addUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
+       entityManager.persist(user);
     }
 
     @Override
     public void deleteUser(User user) {
-        sessionFactory.getCurrentSession().delete(user);
+        entityManager.remove(user);
     }
 
     @Override
     public void updateUser(User user) {
-        sessionFactory.getCurrentSession().update(user);
+        User newUser = entityManager.find(User.class, user.getId());
+        entityManager.detach(newUser);
+        newUser.setName(user.getName());
+        newUser.setLastName(user.getLastName());
+        newUser.setSalary(user.getSalary());
+        entityManager.merge(newUser);
     }
 }

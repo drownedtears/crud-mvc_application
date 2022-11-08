@@ -69,5 +69,17 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @PostMapping(value = "/users/update")
+    public String showUpdatingForm(@ModelAttribute User user, ModelMap model) {
+        model.addAttribute("updatingUser", user);
+        return "update-user";
+    }
+
+    @PostMapping(value = "/users/update/confirmed")
+    public String updateUser(@ModelAttribute User user) {
+        userService.updateUser(user);
+        return "redirect:/users";
+    }
+
 
 }
