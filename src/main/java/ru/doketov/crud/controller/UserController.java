@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.doketov.crud.model.User;
 import ru.doketov.crud.service.UserService;
 
-import java.io.*;
 import java.util.List;
 
 /**
