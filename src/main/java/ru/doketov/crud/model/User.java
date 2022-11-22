@@ -1,6 +1,12 @@
 package ru.doketov.crud.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * main entity which will be tested with crud
@@ -16,7 +22,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "salary")
